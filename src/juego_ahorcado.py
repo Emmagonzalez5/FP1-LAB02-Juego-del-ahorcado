@@ -17,7 +17,8 @@ def elige_palabra(fichero="palabras.txt"):
     return random.choice(palabras)
 
 
-def normalizar(cadena):
+def normalizar(cadena:str)-> str:
+
     """
     Normaliza una cadena de texto realizando las siguientes operaciones:
         - convierte a minúsculas
@@ -30,10 +31,12 @@ def normalizar(cadena):
     Devuelve:
       Cadena de texto con la palabra normalizada
     """
-    # TODO: Implementa esta función (y elimina la instrucción pass)
-    pass
+    
+    cadena= cadena.lower().strip()
+    cadena= cadena.replace ("á", "a").replace("é","e").replace("í","i").replace("ó","o").replace("ú","u")
+    return cadena.replace ("ä", "a").replace("ë","e").replace("ï","i").replace("ö","o").replace("ü","u")
 
-def enmascarar(palabra_secreta, letras_usadas=""):
+def enmascarar(palabra_secreta: str, letras_usadas: str ="")-> str:
     '''Devuelve una cadena de texto con la palabra enmascarada. 
     Las letras que no están en letras_usadas se muestran como guiones bajos (_).
 
@@ -44,11 +47,17 @@ def enmascarar(palabra_secreta, letras_usadas=""):
     Devuelve:
       Cadena de texto con la palabra enmascarada
     '''
-    # TODO: Implementa esta función (y elimina la instrucción pass)
-    pass
+    res = ""
+   
+    for c in palabra_secreta:
+        if c in letras_usadas:
+            res += c
+        else:
+            res += "_"
+    return res
 
 
-def ha_ganado(palabra_enmascarada):
+def ha_ganado(palabra_enmascarada: str ) -> bool:
     '''Devuelve True si el jugador ha ganado (es decir, si no quedan letras por descubrir en la palabra enmascarada).
 
     Parámetros:
@@ -57,8 +66,16 @@ def ha_ganado(palabra_enmascarada):
     Devuelve:
     - True si el jugador ha ganado, False en caso contrario
     '''
-    # TODO: Implementa esta función (y elimina la instrucción pass)
-    pass
+    return "_" not in palabra_enmascarada
+   
+def mostrar_estado(palabra_enmascarada , letras_usadas , intentos_restantes):
+    if letras_usadas=="":
+        letras_usadas= "ninguna"
+    
+    print (f"Estado: {" ".join(palabra_enmascarada)}")
+    print (f"Letras usadas: {(letras_usadas)}") 
+    print (f"Intentos restantes: {(intentos_restantes)}")
+
 
 
 # TODO: Implementa la función mostrar_estado
